@@ -1,0 +1,15 @@
+
+[
+
+  {"id": 52300208, "name": "Dang Ngoc Kim Khanh", "major": "Software Engineering", "gpa": 8.5},
+
+  {"id": 52300206, "name": "Vu Khanh Huyen", "major": "Networking", "gpa": 8.5},
+
+  {"id": 52300223, "name": "Le Diem My", "major": "Data Science", "gpa": 8.5},
+
+  {"id": 4, "name": "Le Van C", "major": "Cyber Security", "gpa": 3.2},
+
+  {"id": 5, "name": "Pham Thi D", "major": "AI", "gpa": 3.7}
+
+]
+

@@ -1,0 +1,12 @@
+$TTL 3600
+$ORIGIN cloud.local.
+@   IN  SOA ns.cloud.local. admin.cloud.local. (
+        2026040803
+        3600
+        900
+        604800
+        3600
+)
+@                   IN  NS  ns.cloud.local.
+ns                  IN  A   10.10.10.10
+web-frontend-server IN  A   10.10.10.10

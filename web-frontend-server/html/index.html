@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyMiniCloud - Trang chủ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f5f3ff; color: #1a1a2e; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 48px;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #ede9fe;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-size: 22px; font-weight: bold; color: #2d1b69; }
+    .nav-logo span { color: #7b61ff; }
+    .nav-links a {
+      color: #4a4a72; text-decoration: none;
+      margin-left: 28px; font-size: 15px; font-weight: 500;
+    }
+    .nav-links a:hover { color: #7b61ff; }
+
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 88vh; align-items: stretch;
+    }
+    .hero-left {
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: linear-gradient(145deg, #ffffff 60%, #f0ebff 100%);
+    }
+    .hero-eyebrow {
+      display: inline-block; background: #ede9fe; color: #5a3fbf;
+      font-size: 12px; font-weight: bold; letter-spacing: 2px;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+      text-transform: uppercase; width: fit-content;
+    }
+    .hero-left h1 {
+      font-size: 52px; line-height: 1.15; color: #1a1033;
+      margin-bottom: 20px; letter-spacing: -1px;
+    }
+    .hero-left h1 span { color: #7b61ff; }
+    .hero-left p {
+      font-size: 18px; color: #4a4a72; line-height: 1.75;
+      margin-bottom: 36px; max-width: 440px;
+    }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 14px 28px;
+      background: linear-gradient(135deg, #7b61ff, #c264e8);
+      color: white; text-decoration: none; border-radius: 12px;
+      font-weight: bold; font-size: 15px; transition: 0.25s;
+      box-shadow: 0 6px 20px rgba(123,97,255,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-block; padding: 14px 28px;
+      background: white; color: #7b61ff; text-decoration: none;
+      border-radius: 12px; font-weight: bold; font-size: 15px;
+      border: 1.5px solid #c4b5fd; transition: 0.25s;
+    }
+    .btn-secondary:hover { background: #f5f3ff; }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #ddd6fe 0%, #fce7f3 60%, #e0f2fe 100%);
+    }
+    .hero-img-main {
+      width: 72%; aspect-ratio: 4/3; object-fit: cover;
+      border-radius: 20px; position: absolute;
+      top: 50%; left: 50%; transform: translate(-58%, -54%);
+      box-shadow: 0 20px 60px rgba(90,63,191,0.2);
+    }
+    .hero-img-sm1 {
+      width: 38%; aspect-ratio: 1/1; object-fit: cover;
+      border-radius: 16px; position: absolute;
+      bottom: 14%; right: 6%;
+      box-shadow: 0 12px 30px rgba(90,63,191,0.18);
+    }
+    .hero-img-sm2 {
+      width: 28%; aspect-ratio: 3/4; object-fit: cover;
+      border-radius: 14px; position: absolute;
+      top: 8%; left: 6%;
+      box-shadow: 0 12px 30px rgba(90,63,191,0.15);
+    }
+    .hero-badge {
+      position: absolute; bottom: 8%; left: 8%;
+      background: white; border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 24px rgba(90,63,191,0.15); font-size: 13px;
+    }
+    .hero-badge strong { color: #2d1b69; display: block; font-size: 18px; }
+    .hero-badge span { color: #7b61ff; }
+
+    .stats-row {
+      display: flex; justify-content: center;
+      background: white;
+      border-top: 1px solid #ede9fe; border-bottom: 1px solid #ede9fe;
+    }
+    .stat-item {
+      flex: 1; text-align: center;
+      padding: 32px 20px;
+      border-right: 1px solid #ede9fe;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 34px; font-weight: bold; color: #7b61ff; margin-bottom: 4px; }
+    .stat-label { font-size: 14px; color: #7c7c9a; }
+
+    .features { max-width: 1100px; margin: 80px auto; padding: 0 40px; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-header h2 { font-size: 36px; color: #1a1033; margin-bottom: 12px; }
+    .section-header p { font-size: 17px; color: #5a5a7a; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-card {
+      background: white; border: 1px solid #ede9fe;
+      border-radius: 20px; padding: 32px 28px; transition: 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(123,97,255,0.1); }
+    .feat-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      margin-bottom: 20px; display: flex; align-items: center;
+      justify-content: center; font-size: 24px;
+    }
+    .feat-icon.purple { background: #ede9fe; }
+    .feat-icon.pink   { background: #fce7f3; }
+    .feat-icon.blue   { background: #e0f2fe; }
+    .feature-card h3 { font-size: 19px; color: #1a1033; margin-bottom: 10px; }
+    .feature-card p { font-size: 14px; color: #5a5a7a; line-height: 1.7; }
+
+    .cta-band {
+      margin: 0 40px 80px; max-width: 1020px;
+      margin-left: auto; margin-right: auto;
+      background: linear-gradient(135deg, #7b61ff 0%, #c264e8 60%, #ff6ec7 100%);
+      border-radius: 28px; padding: 60px 64px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 40px;
+    }
+    .cta-band h2 { font-size: 34px; color: white; margin-bottom: 10px; }
+    .cta-band p { font-size: 16px; color: rgba(255,255,255,0.85); max-width: 420px; }
+    .btn-white {
+      display: inline-block; padding: 14px 30px;
+      background: white; color: #7b61ff; text-decoration: none;
+      border-radius: 12px; font-weight: bold; font-size: 15px;
+      white-space: nowrap; transition: 0.25s; flex-shrink: 0;
+    }
+    .btn-white:hover { background: #f5f3ff; }
+
+    footer {
+      text-align: center; padding: 28px;
+      border-top: 1px solid #ede9fe; color: #9090b0; font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 320px; }
+      .hero-left { padding: 50px 28px; }
+      .hero-left h1 { font-size: 36px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .cta-band { flex-direction: column; text-align: center; padding: 40px 28px; }
+      nav { padding: 16px 24px; }
+      .stats-row { flex-wrap: wrap; }
+      .stat-item { min-width: 50%; border-right: none; border-bottom: 1px solid #ede9fe; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">My<span>Mini</span>Cloud</div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-eyebrow">✦ Trang cá nhân</span>
+      <h1>Khám phá, <span>học hỏi</span> và trải nghiệm</h1>
+      <p>Nơi tổng hợp những bài viết về khoa học, du lịch và học tập — được viết với sự đam mê và tư duy tỉnh táo.</p>
+      <div class="hero-cta">
+        <a href="blog/index.html" class="btn-primary">Đọc Blog ngay</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img class="hero-img-sm2" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400" alt="Học tập">
+      <img class="hero-img-main" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=700" alt="Khoa học">
+      <img class="hero-img-sm1" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400" alt="Du lịch">
+      <div class="hero-badge">
+        <strong>3 chủ đề</strong>
+        <span>Khoa học · Du lịch · Học tập</span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
