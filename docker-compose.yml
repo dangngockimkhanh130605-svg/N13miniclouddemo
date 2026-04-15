@@ -8,7 +8,7 @@ services:
     image: hotensv/web:dev
     container_name: web-frontend-server
     networks: [cloud-net]
-    ports: ["8088:80"]
+    ports: ["8080:80"]
 
   application-backend-server:
     build: ./application-backend-server
