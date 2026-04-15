@@ -108,7 +108,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
-    
     .post-card {
       background: white; border-radius: 20px;
       border: 1px solid #ede9fe; overflow: hidden;
@@ -116,7 +115,6 @@
       transition: 0.25s;
       box-shadow: 0 2px 12px rgba(123,97,255,0.05);
       display: flex; flex-direction: column;
-      /* padding: 10px; */
     }
     .post-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(123,97,255,0.12); }
     .card-img-wrap { position: relative; }
@@ -126,64 +124,29 @@
       padding: 4px 10px; border-radius: 999px;
       font-size: 11px; font-weight: bold;
     }
-    .post-body { padding: 22px 20px 24px; flex: 1; display: flex; flex-direction: column; }
+    .post-body { flex: 1; display: flex; flex-direction: column; }
     .post-body h3 { padding: 10px; font-size: 18px; color: #1a1033; margin-bottom: 10px; line-height: 1.35; }
     .post-body p { padding: 10px; font-size: 14px; color: #5a5a7a; line-height: 1.65; margin-bottom: 18px; flex: 1; }
+    
     .post-footer {
       display: flex; align-items: center; justify-content: space-between;
       font-size: 12px; color: #9090b0;
-      padding-top: 14px; border-top: 1px solid #f0eeff;
+      padding: 14px 10px; border-top: 1px solid #f0eeff;
     }
-    .post-footer a {
+
+    .post-footer .read-now {
       color: #7b61ff; font-weight: bold; font-size: 13px;
       text-decoration: none;
     }
-    .post-footer a:hover { text-decoration: underline; }
-
-    /* NEWSLETTER */
-    .newsletter {
-      max-width: 1100px; margin: 0 auto 80px;
-      padding: 0 48px;
-    }
-    .newsletter-inner {
-      background: linear-gradient(135deg, #f5f3ff, #fce7f3);
-      border: 1px solid #e9d5ff;
-      border-radius: 24px;
-      padding: 52px 60px;
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 40px;
-    }
-    .newsletter h3 { font-size: 26px; color: #1a1033; margin-bottom: 8px; }
-    .newsletter p { font-size: 15px; color: #5a5a7a; }
-    .newsletter-form { display: flex; gap: 10px; flex-shrink: 0; }
-    .newsletter-form input {
-      padding: 12px 18px; border-radius: 10px;
-      border: 1.5px solid #c4b5fd;
-      font-size: 14px; outline: none; width: 220px;
-    }
-    .newsletter-form input:focus { border-color: #7b61ff; }
-    .newsletter-form button {
-      padding: 12px 22px;
-      background: linear-gradient(135deg, #7b61ff, #c264e8);
-      color: white; border: none; border-radius: 10px;
-      font-weight: bold; font-size: 14px; cursor: pointer; white-space: nowrap;
-    }
-
-    footer {
-      text-align: center; padding: 28px;
-      border-top: 1px solid #ede9fe; color: #9090b0; font-size: 14px;
-    }
+    .post-card:hover .read-now { text-decoration: underline; }
 
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .page-header { padding: 32px 24px 28px; }
-      .featured-section, .posts-section, .newsletter, .category-bar { padding: 0 24px; }
+      .featured-section, .posts-section, .category-bar { padding: 0 24px; }
       .featured-card { grid-template-columns: 1fr; }
       .featured-img { min-height: 220px; }
       .posts-grid { grid-template-columns: 1fr; }
-      .newsletter-inner { flex-direction: column; padding: 36px 28px; }
-      .newsletter-form { flex-direction: column; width: 100%; }
-      .newsletter-form input { width: 100%; }
     }
   </style>
 </head>
@@ -206,9 +169,6 @@
 
   <div class="category-bar">
     <a href="#" class="cat-pill active">Tất cả</a>
-    <a href="#" class="cat-pill">🔬 Khoa học</a>
-    <a href="#" class="cat-pill">✈️ Du lịch</a>
-    <a href="#" class="cat-pill">📖 Học tập</a>
   </div>
 
   <section class="featured-section">
@@ -218,7 +178,7 @@
       <div class="featured-body">
         <span class="post-badge badge-science">🔬 Khoa học</span>
         <h2>Khoa học - Tư duy & Thử nghiệm</h2>
-        <p>Khoa học không chỉ nằm trong phòng thí nghiệm mà còn hiện diện trong cuộc sống hằng ngày. Từ quan sát hiện tượng đến cách đặt giả thuyết và thiết kế thí nghiệm...</p>
+        <p>Khoa học không chỉ nằm trong phòng thí nghiệm mà còn hiện diện trong cuộc sống hằng ngày...</p>
         <div class="post-meta">14/04/2026 · 3 phút đọc</div>
         <span class="read-link">Đọc bài viết →</span>
       </div>
@@ -229,50 +189,56 @@
     <div class="section-label" style="margin-bottom:20px;">✦ Tất cả bài viết</div>
     <div class="posts-grid">
 
-      <a href="blog1.html" class="post-card">
-        <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600" alt="Khoa học">
-          <span class="card-badge badge-science">🔬 Khoa học</span>
-        </div>
-        <div class="post-body">
-          <h3>Khoa học - Tư duy & Thử nghiệm</h3>
-          <p>Cách đặt giả thuyết, thiết kế thí nghiệm và ứng dụng khoa học vào đời sống hằng ngày.</p>
-          <div class="post-footer">
-            <span>14/04/2026</span>
-            <a href="blog1.html">Đọc ngay →</a>
+      <div>
+        <a href="blog1.html" class="post-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600" alt="Khoa học">
+            <span class="card-badge badge-science">🔬 Khoa học</span>
           </div>
-        </div>
-      </a>
+          <div class="post-body">
+            <h3>Khoa học - Tư duy & Thử nghiệm</h3>
+            <p>Cách đặt giả thuyết, thiết kế thí nghiệm và ứng dụng khoa học vào đời sống.</p>
+            <div class="post-footer">
+              <span>14/04/2026</span>
+              <span class="read-now">Đọc ngay →</span>
+            </div>
+          </div>
+        </a>
+      </div>
 
-      <a href="blog2.html" class="post-card">
-        <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900" alt="Du lịch">
-          <span class="card-badge badge-travel">✈️ Du lịch</span>
-        </div>
-        <div class="post-body">
-          <h3>Du lịch - Hành trình & Trải nghiệm</h3>
-          <p>Những mẹo nhỏ giúp chuyến đi 3–5 ngày tiết kiệm, an toàn và đầy ắp kỷ niệm đẹp.</p>
-          <div class="post-footer">
-            <span>14/04/2026</span>
-            <a href="blog2.html">Đọc ngay →</a>
+      <div>
+        <a href="blog2.html" class="post-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600" alt="Du lịch">
+            <span class="card-badge badge-travel">✈️ Du lịch</span>
           </div>
-        </div>
-      </a>
+          <div class="post-body">
+            <h3>Du lịch - Hành trình & Trải nghiệm</h3>
+            <p>Những mẹo nhỏ giúp chuyến đi 3–5 ngày tiết kiệm, an toàn và đầy kỷ niệm.</p>
+            <div class="post-footer">
+              <span>14/04/2026</span>
+              <span class="read-now">Đọc ngay →</span>
+            </div>
+          </div>
+        </a>
+      </div>
 
-      <a href="blog3.html" class="post-card">
-        <div class="card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900" alt="Học tập">
-          <span class="card-badge badge-study">📖 Học tập</span>
-        </div>
-        <div class="post-body">
-          <h3>Học tập - Hiệu quả & Ghi nhớ</h3>
-          <p>Một số cách học ít hơn nhưng hiểu sâu hơn, phù hợp cho sinh viên lịch trình bận rộn.</p>
-          <div class="post-footer">
-            <span>14/04/2026</span>
-            <a href="blog3.html">Đọc ngay →</a>
+      <div>
+        <a href="blog3.html" class="post-card">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600" alt="Học tập">
+            <span class="card-badge badge-study">📖 Học tập</span>
           </div>
-        </div>
-      </a>
+          <div class="post-body">
+            <h3>Học tập - Hiệu quả & Ghi nhớ</h3>
+            <p>Một số cách học ít hơn nhưng hiểu sâu hơn cho sinh viên bận rộn.</p>
+            <div class="post-footer">
+              <span>14/04/2026</span>
+              <span class="read-now">Đọc ngay →</span>
+            </div>
+          </div>
+        </a>
+      </div>
 
     </div>
   </section>
