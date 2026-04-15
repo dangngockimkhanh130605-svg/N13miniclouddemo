@@ -1,4 +1,6 @@
-networks: { cloud-net: { name: cloud-net } }
+networks:
+  cloud-net:
+    name: cloud-net
 
 services:
   web-frontend-server:
@@ -6,7 +8,7 @@ services:
     image: hotensv/web:dev
     container_name: web-frontend-server
     networks: [cloud-net]
-    ports: [ "8088:80" ]
+    ports: ["8088:80"]
 
   application-backend-server:
     build: ./application-backend-server
@@ -16,8 +18,9 @@ services:
     ports:
       - "8085:8081"
     environment:
-      OIDC_ISSUER: "http://authentication-identity-server:8080/realms/master"
-      OIDC_AUDIENCE: "myapp"
+      OIDC_ISSUER: "http://localhost:8081/realms/realm_sv001"
+      OIDC_JWKS_URL: "http://authentication-identity-server:8080/realms/realm_sv001/protocol/openid-connect/certs"
+      OIDC_AUDIENCE: "account"
 
   relational-database-server:
     image: mariadb:11
@@ -27,7 +30,7 @@ services:
       MARIADB_DATABASE: minicloud
     volumes:
       - ./relational-database-server/init:/docker-entrypoint-initdb.d:ro
-    ports: [ "3306:3306" ]
+    ports: ["3306:3306"]
     networks: [cloud-net]
 
   authentication-identity-server:
@@ -40,9 +43,11 @@ services:
       KC_HOSTNAME: "localhost"
       KC_HOSTNAME_STRICT: "false"
       KC_HTTP_ENABLED: "true"
-    ports: [ "8081:8080" ]
+    ports: ["8081:8080"]
     restart: unless-stopped
     networks: [cloud-net]
+    volumes:
+      - keycloak_data:/opt/keycloak/data
 
   object-storage-server:
     image: minio/minio
@@ -53,7 +58,7 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
     volumes:
       - ./object-storage-server/data:/data
-    ports: [ "9000:9000", "9001:9001" ]
+    ports: ["9000:9000", "9001:9001"]
     networks: [cloud-net]
 
   internal-dns-server:
@@ -70,13 +75,13 @@ services:
   monitoring-node-exporter-server:
     image: prom/node-exporter:latest
     container_name: monitoring-node-exporter-server
-    ports: [ "9100:9100" ]
+    ports: ["9100:9100"]
     networks: [cloud-net]
 
   monitoring-prometheus-server:
     image: prom/prometheus:latest
     container_name: monitoring-prometheus-server
-    ports: [ "9090:9090" ]
+    ports: ["9090:9090"]
     volumes:
       - ./monitoring-prometheus-server/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     networks: [cloud-net]
@@ -84,7 +89,7 @@ services:
   monitoring-grafana-dashboard-server:
     image: grafana/grafana:latest
     container_name: monitoring-grafana-dashboard-server
-    ports: [ "3000:3000" ]
+    ports: ["3000:3000"]
     networks: [cloud-net]
 
   api-gateway-proxy-server:
@@ -94,8 +99,11 @@ services:
       - web-frontend-server
       - application-backend-server
       - authentication-identity-server
-    ports: [ "80:80" ]
+    ports: ["80:80"]
     volumes:
       - ./api-gateway-proxy-server/nginx.conf:/etc/nginx/nginx.conf:ro
     networks: [cloud-net]
     restart: unless-stopped
+
+volumes:
+  keycloak_data:
