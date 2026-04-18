@@ -1,0 +1,4 @@
+object-storage-server/data/ 
+.DS_Store 
+Thumbs.db 
+__pycache__/ 

@@ -9,7 +9,23 @@ services:
     container_name: web-frontend-server
     networks: [cloud-net]
     ports: ["8080:80"]
+  web-frontend-server1:
+    image: nginx:stable-alpine
+    container_name: web-frontend-server1
+    volumes:
+      # Chỗ này em trỏ thẳng vào file index.html màu Tím trên máy em
+      - ./web-frontend-server1/html/index.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - cloud-net
 
+  web-frontend-server2:
+    image: nginx:stable-alpine
+    container_name: web-frontend-server2
+    volumes:
+      # Chỗ này em trỏ thẳng vào file index.html màu Xanh trên máy em
+      - ./web-frontend-server2/html/index.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - cloud-net
   application-backend-server:
     build: ./application-backend-server
     image: hotensv/app:dev
@@ -79,7 +95,7 @@ services:
     networks: [cloud-net]
 
   monitoring-prometheus-server:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.0.0
     container_name: monitoring-prometheus-server
     ports: ["9090:9090"]
     volumes:

@@ -1,4 +1,4 @@
-server {
+﻿server {
   listen 80;
   server_name _;
 
@@ -12,8 +12,4 @@ server {
     index index.html;
     autoindex off;
   }
-  location /metrics {
-    return 200 "# HELP dummy_metric Just a placeholder\n# TYPE dummy_metric gauge\ndummy_metric 1\n";
-    default_type text/plain;
-}
 }
