@@ -210,7 +210,7 @@ dig @127.0.0.1 -p 1053 web-frontend-server.cloud.local +short
 **PowerShell:**
 ```powershell
 # Truy vấn bản ghi DNS nội bộ qua container (không cần cài dig trên Windows)
-docker exec -it internal-dns-server dig @127.0.0.1 web-frontend-server.cloud.local +short
+docker exec -it internal-dns-server dig "@127.0.0.1" web-frontend-server.cloud.local +short
 
 # Hoặc dùng Resolve-DnsName nếu port 1053 được expose ra localhost
 Resolve-DnsName -Name web-frontend-server.cloud.local -Server 127.0.0.1 -Port 1053 -Type A
