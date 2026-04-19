@@ -134,7 +134,7 @@ docker exec -it relational-database-server mysql -uroot -proot \
 
 **PowerShell:**
 ```powershell
-docker exec -it relational-database-server mysql -uroot -proot `
+docker exec -it relational-database-server mariadb -uroot -proot `
   -e "USE minicloud; SHOW TABLES; SELECT * FROM notes;"
 ```
 
