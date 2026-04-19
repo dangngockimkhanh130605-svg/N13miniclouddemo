@@ -555,9 +555,9 @@ dig @127.0.0.1 -p 1053 keycloak.cloud.local +short
 **PowerShell:**
 ```powershell
 # Cách 1: Dùng docker exec vào container DNS (luôn hoạt động, không cần cài thêm)
-docker exec -it internal-dns-server dig @127.0.0.1 app-backend.cloud.local +short
-docker exec -it internal-dns-server dig @127.0.0.1 minio.cloud.local +short
-docker exec -it internal-dns-server dig @127.0.0.1 keycloak.cloud.local +short
+docker exec -it internal-dns-server dig "@127.0.0.1" app-backend.cloud.local +short
+docker exec -it internal-dns-server dig "@127.0.0.1" minio.cloud.local +short
+docker exec -it internal-dns-server dig "@127.0.0.1" keycloak.cloud.local +short
 
 # Cách 2: Dùng Resolve-DnsName có sẵn trên Windows (port 1053 phải được expose)
 Resolve-DnsName -Name app-backend.cloud.local -Server 127.0.0.1 -Port 1053 -Type A
