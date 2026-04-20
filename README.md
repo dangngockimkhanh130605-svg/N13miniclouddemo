@@ -725,11 +725,11 @@ dig @127.0.0.1 -p 1053 app-backend.cloud.local +short
 
 ```bash
 # Xem dữ liệu hệ thống (Cơ bản)
-docker exec -it relational-database-server mysql -uroot -proot \
+docker exec -it relational-database-server mariadb -uroot -proot \
   -e "USE minicloud; SELECT * FROM notes;"
 
 # Xem bảng sinh viên (Mở rộng #3)
-docker exec -it relational-database-server mysql -uroot -proot \
+docker exec -it relational-database-server mariadb -uroot -proot \
   -e "USE studentdb; SELECT * FROM students;"
 ```
 
