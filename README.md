@@ -736,14 +736,22 @@ docker exec -it relational-database-server mariadb -uroot -proot \
 #### C. Kiểm tra Kết nối mạng nội bộ (Cơ bản #10)
 
 ```bash
-docker exec -it api-gateway-proxy-server ping -c 3 web-frontend-server
-docker exec -it api-gateway-proxy-server ping -c 3 application-backend-server
-docker exec -it api-gateway-proxy-server ping -c 3 relational-database-server
-docker exec -it api-gateway-proxy-server ping -c 3 authentication-identity-server
-docker exec -it api-gateway-proxy-server ping -c 3 object-storage-server
-docker exec -it api-gateway-proxy-server ping -c 3 internal-dns-server
-docker exec -it api-gateway-proxy-server ping -c 3 monitoring-prometheus-server
-docker exec -it api-gateway-proxy-server ping -c 3 monitoring-grafana-dashboard-server
+# 1. Kiểm tra sang Web Server
+docker exec -it api-gateway-proxy-server curl -I http://web-frontend-server
+# 2. Kiểm tra sang Application Backend
+docker exec -it api-gateway-proxy-server curl -I http://application-backend-server:8081/hello
+# 3. Kiểm tra sang Database Server (MariaDB trả về lỗi kết nối HTTP là bình thường, miễn là thấy phản hồi)
+docker exec -it api-gateway-proxy-server curl http://relational-database-server:3306
+# 4. Kiểm tra sang Keycloak
+docker exec -it api-gateway-proxy-server curl -I http://authentication-identity-server:8080/health
+# 5. Kiểm tra sang MinIO
+docker exec -it api-gateway-proxy-server curl -I http://object-storage-server:9000/minio/health/live
+# 6. Kiểm tra sang DNS Server (DNS dùng UDP/53 nên curl sẽ kiểm tra cổng quản lý nếu có, hoặc dùng lệnh nslookup)
+docker exec -it api-gateway-proxy-server nslookup web-frontend-server.cloud.local internal-dns-server
+# 7. Kiểm tra sang Prometheus
+docker exec -it api-gateway-proxy-server curl -I http://monitoring-prometheus-server:9090/-/healthy
+# 8. Kiểm tra sang Grafana
+docker exec -it api-gateway-proxy-server curl -I http://monitoring-grafana-dashboard-server:3000/api/health
 ```
 
 #### D. Kiểm tra Log & Metrics (Cơ bản #7, Mở rộng #8)
