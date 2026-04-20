@@ -715,10 +715,10 @@ $resp.Headers["X-LB-Test"]
 
 ```bash
 dig @127.0.0.1 -p 1053 web-frontend-server.cloud.local +short
-# Kỳ vọng: 10.10.10.10
+# Kỳ vọng: 172.31.28.252
 
 dig @127.0.0.1 -p 1053 app-backend.cloud.local +short
-# Kỳ vọng: 10.10.10.20
+# Kỳ vọng: 172.31.28.252
 ```
 
 #### B. Kiểm tra Database (Cơ bản & Mở rộng #3)
